@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=Adobe Acrobat Reader DC
+GenericName=Document Viewer
+Comment=
+Exec=acrordrdc
+Icon=${SNAP}/meta/gui/acrordrdc.png
+Categories=Graphics;Office;Viewer;
+MimeType=application/pdf;application/vnd.adobe.acrobat-security-settings;application/vnd.adobe.pdfxml;application/vnd.adobe.xdp+xml;application/vnd.adobe.xfd+xml;application/vnd.adobe.xfdf;application/vnd.fdf;
+Terminal=false
+StartupNotify=true
+StartupWMClass=AcroRdr32.exe

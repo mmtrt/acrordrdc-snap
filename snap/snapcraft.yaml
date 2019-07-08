@@ -1,0 +1,71 @@
+name: acrordrdc
+version: 2018.011.20063
+summary: Adobe Acrobat Reader is a pdf reader & Web services developed by Adobe Inc.
+description: |
+  Adobe Acrobat Reader DC software is the free global standard for reliably viewing, printing, and commenting on PDF documents.
+
+  And now, it's connected to the Adobe Document Cloud − making it easier than ever to work across computers and mobile devices.
+
+  It's the only PDF viewer that can open and interact with all types of PDF content, including forms and multimedia.
+
+grade: stable
+confinement: strict
+architectures:
+  - build-on: amd64
+    run-on: [amd64, i386]
+base: core18
+
+plugs:
+  wine-runtime:
+    interface: content
+    target: $SNAP/wine-runtime
+    default-provider: wine-platform-runtime
+  wine-3-stable:
+    interface: content
+    target: $SNAP/wine-platform
+    default-provider: wine-platform-3-stable
+  gtk-3-themes:
+    default-provider: gtk-common-themes
+    interface: content
+    target: $SNAP/data-dir/themes
+  icon-themes:
+    interface: content
+    target: $SNAP/data-dir/icons
+    default-provider: gtk-common-themes
+
+apps:
+  acrordrdc:
+    command: acrordrdc
+    environment:
+      INSTALL_URL_DE: "https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/1801120063/AcroRdrDC1801120063_de_DE.exe"
+      INSTALL_URL_US: "https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/1801120063/AcroRdrDC1801120063_en_US.exe"
+      INSTALL_URL_ES: "https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/1801120063/AcroRdrDC1801120063_es_ES.exe"
+      INSTALL_URL_FR: "https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/1801120063/AcroRdrDC1801120063_fr_FR.exe"
+      INSTALL_URL_JP: "https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/1801120063/AcroRdrDC1801120063_ja_JP.exe"
+    plugs:
+      - desktop
+      - desktop-legacy
+      - home
+      - network
+      - removable-media
+      - opengl
+      - process-control
+      - pulseaudio
+      - wayland
+      - x11
+      - gtk-3-themes
+      - icon-themes
+      - wine-runtime
+      - wine-3-stable
+
+parts:
+  acrordrdc:
+    plugin: dump
+    source: ./snap/local/scripts
+    override-build: |
+      snapcraftctl build
+      set -ex
+      mkdir -p $SNAPCRAFT_PART_INSTALL/wine-runtime
+      mkdir -p $SNAPCRAFT_PART_INSTALL/wine-platform
+    organize:
+      'acrordrdc': bin/
