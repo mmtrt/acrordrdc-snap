@@ -43,6 +43,7 @@ apps:
       INSTALL_URL_FR: "https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/1801120063/AcroRdrDC1801120063_fr_FR.exe"
       INSTALL_URL_JP: "https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/1801120063/AcroRdrDC1801120063_ja_JP.exe"
     plugs:
+      - cups-control
       - desktop
       - desktop-legacy
       - home
