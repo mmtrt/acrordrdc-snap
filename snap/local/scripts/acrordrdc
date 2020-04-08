@@ -314,7 +314,7 @@ if [ ! -d $WINEPREFIX ]; then
 ensure_dir_exists $WINEPREFIX/drive_c/windows/Fonts
 find /usr/share/fonts/ -type f \( -name "*.ttf" -o -name "*.ttc" \) -exec ln -vs "{}" $WINEPREFIX/drive_c/windows/Fonts/ \; &>/dev/null
 wine wineboot
-$WINETRICKS --unattended mspatcha winxp
+$WINETRICKS --unattended mspatcha
 rm -rf $XDG_CACHE_HOME/winetricks
 fi
 
