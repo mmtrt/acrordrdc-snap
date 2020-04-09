@@ -354,6 +354,8 @@ function install_de() {
     wine "${TMPDIR}/dl/setup.exe" /sAll
     # Apply reg
     wget https://gist.github.com/mmtrt/896cf131e3956b23e8e47a5a52f58b01/raw/097cbd0eeb836d69a84423aaef9a7ead2840a111/acrordr -P ${TMPDIR} && wine regedit ${TMPDIR}/acrordr && rm ${TMPDIR}/acrordr
+    # set prefix os to xp
+    $WINETRICKS --unattended winxp
     # Rename rdrcef file which is going rouge on closing acrordr
     mv "$progHome/AcroCEF/RdrCEF.exe" "$progHome/AcroCEF/RdrCEF.exe.BAK" 2>/dev/null
     # Remove the cached installers & files
@@ -377,6 +379,8 @@ function install_es() {
     wine "${TMPDIR}/dl/setup.exe" /sAll
     # Apply reg
     wget https://gist.github.com/mmtrt/896cf131e3956b23e8e47a5a52f58b01/raw/097cbd0eeb836d69a84423aaef9a7ead2840a111/acrordr -P ${TMPDIR} && wine regedit ${TMPDIR}/acrordr && rm ${TMPDIR}/acrordr
+    # set prefix os to xp
+    $WINETRICKS --unattended winxp
     # Rename rdrcef file which is going rouge on closing acrordr
     mv "$progHome/AcroCEF/RdrCEF.exe" "$progHome/AcroCEF/RdrCEF.exe.BAK" 2>/dev/null
     # Remove the cached installers & files
@@ -400,6 +404,8 @@ function install_fr() {
     wine "${TMPDIR}/dl/setup.exe" /sAll
     # Apply reg
     wget https://gist.github.com/mmtrt/896cf131e3956b23e8e47a5a52f58b01/raw/097cbd0eeb836d69a84423aaef9a7ead2840a111/acrordr -P ${TMPDIR} && wine regedit ${TMPDIR}/acrordr && rm ${TMPDIR}/acrordr
+    # set prefix os to xp
+    $WINETRICKS --unattended winxp
     # Rename rdrcef file which is going rouge on closing acrordr
     mv "$progHome/AcroCEF/RdrCEF.exe" "$progHome/AcroCEF/RdrCEF.exe.BAK" 2>/dev/null
     # Remove the cached installers & files
@@ -423,6 +429,8 @@ function install_jp() {
     wine "${TMPDIR}/dl/setup.exe" /sAll
     # Apply reg
     wget https://gist.github.com/mmtrt/896cf131e3956b23e8e47a5a52f58b01/raw/097cbd0eeb836d69a84423aaef9a7ead2840a111/acrordr -P ${TMPDIR} && wine regedit ${TMPDIR}/acrordr && rm ${TMPDIR}/acrordr
+    # set prefix os to xp
+    $WINETRICKS --unattended winxp
     # Rename rdrcef file which is going rouge on closing acrordr
     mv "$progHome/AcroCEF/RdrCEF.exe" "$progHome/AcroCEF/RdrCEF.exe.BAK" 2>/dev/null
     # Remove the cached installers & files
@@ -446,6 +454,8 @@ function install_us() {
     wine "${TMPDIR}/dl/setup.exe" /sAll
     # Apply reg
     wget https://gist.github.com/mmtrt/896cf131e3956b23e8e47a5a52f58b01/raw/097cbd0eeb836d69a84423aaef9a7ead2840a111/acrordr -P ${TMPDIR} && wine regedit ${TMPDIR}/acrordr && rm ${TMPDIR}/acrordr
+    # set prefix os to xp
+    $WINETRICKS --unattended winxp
     # Rename rdrcef file which is going rouge on closing acrordr
     mv "$progHome/AcroCEF/RdrCEF.exe" "$progHome/AcroCEF/RdrCEF.exe.BAK" 2>/dev/null
     # Remove the cached installers & files
@@ -493,6 +503,8 @@ fi
 if [ -d "$progSetup" ]; then
   # Apply reg
   wget https://gist.github.com/mmtrt/896cf131e3956b23e8e47a5a52f58b01/raw/097cbd0eeb836d69a84423aaef9a7ead2840a111/acrordr -P ${TMPDIR} && wine regedit ${TMPDIR}/acrordr && rm ${TMPDIR}/acrordr
+  # set prefix os to xp
+  $WINETRICKS --unattended winxp
   # Rename rdrcef file which is going to close on closing acrordr
   mv "$progHome/AcroCEF/RdrCEF.exe" "$progHome/AcroCEF/RdrCEF.exe.BAK" 2>/dev/null
   # Remove cached installer
