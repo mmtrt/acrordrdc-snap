@@ -355,7 +355,7 @@ function install_de() {
     # Apply reg
     wget https://gist.github.com/mmtrt/896cf131e3956b23e8e47a5a52f58b01/raw/097cbd0eeb836d69a84423aaef9a7ead2840a111/acrordr -P ${TMPDIR} && wine regedit ${TMPDIR}/acrordr && rm ${TMPDIR}/acrordr
     # Rename rdrcef file which is going rouge on closing acrordr
-    mv "$progHome/AcroCEF/RdrCEF.exe" "$progHome/AcroCEF/RdrCEF.exe.BAK"
+    mv "$progHome/AcroCEF/RdrCEF.exe" "$progHome/AcroCEF/RdrCEF.exe.BAK" 2>/dev/null
     # Remove the cached installers & files
     rm -v "${TMPDIR}/${INSTALL_EXE_DE}" 2>/dev/null
     rm -rf "${TMPDIR}/dl"
@@ -378,7 +378,7 @@ function install_es() {
     # Apply reg
     wget https://gist.github.com/mmtrt/896cf131e3956b23e8e47a5a52f58b01/raw/097cbd0eeb836d69a84423aaef9a7ead2840a111/acrordr -P ${TMPDIR} && wine regedit ${TMPDIR}/acrordr && rm ${TMPDIR}/acrordr
     # Rename rdrcef file which is going rouge on closing acrordr
-    mv "$progHome/AcroCEF/RdrCEF.exe" "$progHome/AcroCEF/RdrCEF.exe.BAK"
+    mv "$progHome/AcroCEF/RdrCEF.exe" "$progHome/AcroCEF/RdrCEF.exe.BAK" 2>/dev/null
     # Remove the cached installers & files
     rm -v "${TMPDIR}/${INSTALL_EXE_ES}" 2>/dev/null
     rm -rf "${TMPDIR}/dl"
@@ -401,7 +401,7 @@ function install_fr() {
     # Apply reg
     wget https://gist.github.com/mmtrt/896cf131e3956b23e8e47a5a52f58b01/raw/097cbd0eeb836d69a84423aaef9a7ead2840a111/acrordr -P ${TMPDIR} && wine regedit ${TMPDIR}/acrordr && rm ${TMPDIR}/acrordr
     # Rename rdrcef file which is going rouge on closing acrordr
-    mv "$progHome/AcroCEF/RdrCEF.exe" "$progHome/AcroCEF/RdrCEF.exe.BAK"
+    mv "$progHome/AcroCEF/RdrCEF.exe" "$progHome/AcroCEF/RdrCEF.exe.BAK" 2>/dev/null
     # Remove the cached installers & files
     rm -v "${TMPDIR}/${INSTALL_EXE_FR}" 2>/dev/null
     rm -rf "${TMPDIR}/dl"
@@ -424,7 +424,7 @@ function install_jp() {
     # Apply reg
     wget https://gist.github.com/mmtrt/896cf131e3956b23e8e47a5a52f58b01/raw/097cbd0eeb836d69a84423aaef9a7ead2840a111/acrordr -P ${TMPDIR} && wine regedit ${TMPDIR}/acrordr && rm ${TMPDIR}/acrordr
     # Rename rdrcef file which is going rouge on closing acrordr
-    mv "$progHome/AcroCEF/RdrCEF.exe" "$progHome/AcroCEF/RdrCEF.exe.BAK"
+    mv "$progHome/AcroCEF/RdrCEF.exe" "$progHome/AcroCEF/RdrCEF.exe.BAK" 2>/dev/null
     # Remove the cached installers & files
     rm -v "${TMPDIR}/${INSTALL_EXE_JP}" 2>/dev/null
     rm -rf "${TMPDIR}/dl"
@@ -447,7 +447,7 @@ function install_us() {
     # Apply reg
     wget https://gist.github.com/mmtrt/896cf131e3956b23e8e47a5a52f58b01/raw/097cbd0eeb836d69a84423aaef9a7ead2840a111/acrordr -P ${TMPDIR} && wine regedit ${TMPDIR}/acrordr && rm ${TMPDIR}/acrordr
     # Rename rdrcef file which is going rouge on closing acrordr
-    mv "$progHome/AcroCEF/RdrCEF.exe" "$progHome/AcroCEF/RdrCEF.exe.BAK"
+    mv "$progHome/AcroCEF/RdrCEF.exe" "$progHome/AcroCEF/RdrCEF.exe.BAK" 2>/dev/null
     # Remove the cached installers & files
     rm -v "${TMPDIR}/${INSTALL_EXE_US}" 2>/dev/null
     rm -rf "${TMPDIR}/dl"
@@ -494,7 +494,7 @@ if [ -d "$progSetup" ]; then
   # Apply reg
   wget https://gist.github.com/mmtrt/896cf131e3956b23e8e47a5a52f58b01/raw/097cbd0eeb836d69a84423aaef9a7ead2840a111/acrordr -P ${TMPDIR} && wine regedit ${TMPDIR}/acrordr && rm ${TMPDIR}/acrordr
   # Rename rdrcef file which is going to close on closing acrordr
-  mv "$progHome/AcroCEF/RdrCEF.exe" "$progHome/AcroCEF/RdrCEF.exe.BAK"
+  mv "$progHome/AcroCEF/RdrCEF.exe" "$progHome/AcroCEF/RdrCEF.exe.BAK" 2>/dev/null
   # Remove cached installer
   rm -rf "$progSetup"
 fi
