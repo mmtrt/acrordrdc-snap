@@ -42,6 +42,7 @@ apps:
       INSTALL_URL_ES: "https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/2000620042/AcroRdrDC2000620042_es_ES.exe"
       INSTALL_URL_FR: "https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/2000620042/AcroRdrDC2000620042_fr_FR.exe"
       INSTALL_URL_JP: "https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/2000620042/AcroRdrDC2000620042_ja_JP.exe"
+      DISABLE_WAYLAND: 1
     plugs:
       - cups-control
       - desktop
