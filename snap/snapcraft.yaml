@@ -1,5 +1,5 @@
 name: acrordrdc
-version: 2020.006.20042
+title: Adobe Acrobat Reader (WINE)
 summary: Adobe Acrobat Reader is a pdf reader & Web services developed by Adobe Inc.
 description: |
   Adobe Acrobat Reader DC software is the free global standard for reliably viewing, printing, and commenting on PDF documents.
@@ -7,6 +7,7 @@ description: |
   And now, it's connected to the Adobe Document Cloud − making it easier than ever to work across computers and mobile devices.
 
   It's the only PDF viewer that can open and interact with all types of PDF content, including forms and multimedia.
+adopt-info: acrordrdc
 
 grade: stable
 confinement: strict
@@ -24,50 +25,56 @@ plugs:
     interface: content
     target: $SNAP/wine-platform
     default-provider: wine-platform-5-stable
-  gtk-3-themes:
-    default-provider: gtk-common-themes
-    interface: content
-    target: $SNAP/data-dir/themes
-  icon-themes:
-    interface: content
-    target: $SNAP/data-dir/icons
-    default-provider: gtk-common-themes
+
+environment:
+  WINEARCH: "win32"
+  WINEDLLOVERRIDES: "mscoree,mshtml="   # Prevent pop-ups about Wine Mono and Wine Gecko
+  INSTALL_URL_DE: "https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/$(echo $SNAP_VERSION | sed 's/\.//g')/AcroRdrDC$(echo $SNAP_VERSION | sed 's/\.//g')_de_DE.exe"
+  INSTALL_URL_US: "https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/$(echo $SNAP_VERSION | sed 's/\.//g')/AcroRdrDC$(echo $SNAP_VERSION | sed 's/\.//g')_en_US.exe"
+  INSTALL_URL_ES: "https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/$(echo $SNAP_VERSION | sed 's/\.//g')/AcroRdrDC$(echo $SNAP_VERSION | sed 's/\.//g')_es_ES.exe"
+  INSTALL_URL_FR: "https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/$(echo $SNAP_VERSION | sed 's/\.//g')/AcroRdrDC$(echo $SNAP_VERSION | sed 's/\.//g')_fr_FR.exe"
+  INSTALL_URL_JP: "https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/$(echo $SNAP_VERSION | sed 's/\.//g')/AcroRdrDC$(echo $SNAP_VERSION | sed 's/\.//g')_ja_JP.exe"
 
 apps:
   acrordrdc:
     command: acrordrdc
     environment:
-      INSTALL_URL_DE: "https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/2000620042/AcroRdrDC2000620042_de_DE.exe"
-      INSTALL_URL_US: "https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/2000620042/AcroRdrDC2000620042_en_US.exe"
-      INSTALL_URL_ES: "https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/2000620042/AcroRdrDC2000620042_es_ES.exe"
-      INSTALL_URL_FR: "https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/2000620042/AcroRdrDC2000620042_fr_FR.exe"
-      INSTALL_URL_JP: "https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/2000620042/AcroRdrDC2000620042_ja_JP.exe"
-      DISABLE_WAYLAND: 1
+      RUN_EXE: "C:/Program Files/Adobe/Acrobat Reader DC/Reader/AcroRd32.exe"
     plugs:
       - cups-control
-      - desktop
-      - desktop-legacy
       - home
       - network
       - removable-media
       - opengl
-      - process-control
-      - pulseaudio
-      - wayland
-      - x11
-      - gtk-3-themes
-      - icon-themes
-      - wine-runtime
-      - wine-5-stable
+
+  wine:
+    extensions: [ gnome-3-28 ]
+    command: bin/sommelier
+    plugs:
+      - home
+      - network
+  winetricks:
+    extensions: [ gnome-3-28 ]
+    command: bin/sommelier winetricks
+    plugs:
+      - network
 
 parts:
   acrordrdc:
-    plugin: dump
-    source: ./snap/local/scripts
+    plugin: nil
+    source: ./snap/local/src
     override-build: |
       snapcraftctl build
       set -ex
-      mkdir -p $SNAPCRAFT_PART_INSTALL/wine-runtime
-      mkdir -p $SNAPCRAFT_PART_INSTALL/wine-platform
-    organize:
-      'acrordrdc': bin/
+      ver=$(wget -qO- https://helpx.adobe.com/acrobat/release-note/release-notes-acrobat-reader.html | grep "dcconti" | sed 's|(| |g;s|)| |g' | awk 'FNR == 1 {next} {print $6}' | head -n1)
+      snapcraftctl set-version "$ver"
+      mkdir -p sommelier/hooks ; mv pre-install sommelier/hooks ; cp -R -p sommelier $SNAPCRAFT_PART_INSTALL
+    stage:
+      - sommelier
+
+  # The sommelier script helps you snap Windows applications using Wine. It 
+  # initializes and configures Wine and installs the Windows application.
+  sommelier:
+    plugin: make
+    source: https://github.com/mmtrt/sommelier-core.git
+    source-branch: "winetricks-fix-patch"
