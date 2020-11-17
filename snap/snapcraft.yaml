@@ -42,7 +42,8 @@ environment:
 
 apps:
   acrordrdc:
-    command: acrordrdc
+    extensions: [ gnome-3-28 ]
+    command: bin/sommelier run-exe
     environment:
       RUN_EXE: "C:/Program Files/Adobe/Acrobat Reader DC/Reader/AcroRd32.exe"
     plugs:
