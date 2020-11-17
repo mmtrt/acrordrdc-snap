@@ -76,6 +76,8 @@ parts:
       mkdir -p sommelier/hooks ; mv pre-install sommelier/hooks ; cp -R -p sommelier $SNAPCRAFT_PART_INSTALL
     stage:
       - sommelier
+    build-packages:
+      - wget
 
   # The sommelier script helps you snap Windows applications using Wine. It 
   # initializes and configures Wine and installs the Windows application.
