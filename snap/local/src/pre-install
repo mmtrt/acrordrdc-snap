@@ -7,6 +7,12 @@ progSetup="$WINEPREFIX/drive_c/Program Files/Adobe/Acrobat Reader DC/Setup Files
 
 $WINETRICKS --unattended mspatcha
 
+INSTALL_URL_DE="https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/XXX/AcroRdrDCXXX_de_DE.exe"
+INSTALL_URL_US="https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/XXX/AcroRdrDCXXX_en_US.exe"
+INSTALL_URL_ES="https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/XXX/AcroRdrDCXXX_es_ES.exe"
+INSTALL_URL_FR="https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/XXX/AcroRdrDCXXX_fr_FR.exe"
+INSTALL_URL_JP="https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/XXX/AcroRdrDCXXX_ja_JP.exe"
+
 # If we've been given and installer URL derive the filename
 if [ -n "${INSTALL_URL_DE}" ]; then
   INSTALL_EXE_DE=$(basename "${INSTALL_URL_DE}")
