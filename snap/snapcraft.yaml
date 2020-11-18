@@ -29,16 +29,11 @@ plugs:
 environment:
   WINEARCH: "win32"
   WINEDLLOVERRIDES: "mscoree,mshtml="   # Prevent pop-ups about Wine Mono and Wine Gecko
-  INSTALL_URL_DE: |
-    https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/$(grep --extended-regexp "version:" $SNAP/meta/snap.yaml | cut --delimiter=: --fields=2 | sed "s/^ *//" | tr -d ".")/AcroRdrDC$(grep --extended-regexp "version:" $SNAP/meta/snap.yaml | cut --delimiter=: --fields=2 | sed "s/^ *//" | tr -d ".")_de_DE.exe
-  INSTALL_URL_US: |
-    https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/$(grep --extended-regexp "version:" $SNAP/meta/snap.yaml | cut --delimiter=: --fields=2 | sed "s/^ *//" | tr -d ".")/AcroRdrDC$(grep --extended-regexp "version:" $SNAP/meta/snap.yaml | cut --delimiter=: --fields=2 | sed "s/^ *//" | tr -d ".")_en_US.exe
-  INSTALL_URL_ES: |
-    https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/$(grep --extended-regexp "version:" $SNAP/meta/snap.yaml | cut --delimiter=: --fields=2 | sed "s/^ *//" | tr -d ".")/AcroRdrDC$(grep --extended-regexp "version:" $SNAP/meta/snap.yaml | cut --delimiter=: --fields=2 | sed "s/^ *//" | tr -d ".")_es_ES.exe
-  INSTALL_URL_FR: |
-    https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/$(grep --extended-regexp "version:" $SNAP/meta/snap.yaml | cut --delimiter=: --fields=2 | sed "s/^ *//" | tr -d ".")/AcroRdrDC$(grep --extended-regexp "version:" $SNAP/meta/snap.yaml | cut --delimiter=: --fields=2 | sed "s/^ *//" | tr -d ".")_fr_FR.exe
-  INSTALL_URL_JP: |
-    https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/$(grep --extended-regexp "version:" $SNAP/meta/snap.yaml | cut --delimiter=: --fields=2 | sed "s/^ *//" | tr -d ".")/AcroRdrDC$(grep --extended-regexp "version:" $SNAP/meta/snap.yaml | cut --delimiter=: --fields=2 | sed "s/^ *//" | tr -d ".")_ja_JP.exe
+  INSTALL_URL_DE: https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/XXX/AcroRdrDCXXX_de_DE.exe
+  INSTALL_URL_US: https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/XXX/AcroRdrDCXXX_en_US.exe
+  INSTALL_URL_ES: https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/XXX/AcroRdrDCXXX_es_ES.exe
+  INSTALL_URL_FR: https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/XXX/AcroRdrDCXXX_fr_FR.exe
+  INSTALL_URL_JP: https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/XXX/AcroRdrDCXXX_ja_JP.exe
 
 apps:
   acrordrdc:
@@ -86,3 +81,10 @@ parts:
     plugin: make
     source: https://github.com/mmtrt/sommelier-core.git
     source-branch: "winetricks-fix-patch"
+
+  fixup-url:
+    after: [sommelier]
+    plugin: nil
+    override-prime: |
+      lver=$(wget -qO- https://helpx.adobe.com/acrobat/release-note/release-notes-acrobat-reader.html | grep "dcconti" | sed 's|(| |g;s|)| |g' | awk 'FNR == 1 {next} {print $6}' | tr -d '.' | head -n1)
+      sed -i "s|XXX|$lver|g" ../../acrordrdc/prime/meta/snap.yaml
