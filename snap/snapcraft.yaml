@@ -82,4 +82,4 @@ parts:
     plugin: nil
     override-build: |
       lver=$(wget -qO- https://helpx.adobe.com/acrobat/release-note/release-notes-acrobat-reader.html | grep "dcconti" | sed 's|(| |g;s|)| |g' | awk 'FNR == 1 {next} {print $6}' | tr -d '.' | head -n1)
-      sed -i "s|XXX|$lver|g" ../../acrordrdc/install/meta/snap.yaml
+      sed -i "s|XXX|$lver|g" ../../acrordrdc/install/sommelier/hooks/pre-install
