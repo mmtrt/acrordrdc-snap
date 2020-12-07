@@ -163,16 +163,7 @@ function install_us() {
       --center \
       --width=400 \
       --button="Install:0" --button="Exit:1" \
-      --text "Note:   After installing this snap it is recommended to
-            disconnect network interface so that app does not
-            auto update it. As new versions break the app in
-            wine!!
-
-            Run this command in terminal to disconnect it:
-
-            > snap disconnect $SNAP_NAME:network
-
-            Select your language for installer download:" \
+      --text "Select your language for installer download:" \
       --entry-text \
       "English" "French" "German" "Japanese" "Spanish")
   ret=$?
