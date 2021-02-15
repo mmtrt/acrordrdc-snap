@@ -62,7 +62,7 @@ parts:
     override-build: |
       snapcraftctl build
       set -ex
-      ver=$(wget -qO- https://helpx.adobe.com/acrobat/release-note/release-notes-acrobat-reader.html | grep "dccontinuousnovember2020" | sed 's|(| |g;s|)| |g' | awk 'FNR == 1 {next} {print $6}' | head -n1)
+      ver=$(wget -qO- https://helpx.adobe.com/acrobat/release-note/release-notes-acrobat-reader.html | grep "dccontinuousfeb2021" | sed 's|(| |g;s|)| |g' | awk '{print $6}' | head -n1)
       snapcraftctl set-version "20$ver"
       mkdir -p sommelier/hooks ; mv pre-install sommelier/hooks ; cp -R -p sommelier $SNAPCRAFT_PART_INSTALL
     stage:
@@ -81,5 +81,5 @@ parts:
     after: [sommelier]
     plugin: nil
     override-build: |
-      lver=$(wget -qO- https://helpx.adobe.com/acrobat/release-note/release-notes-acrobat-reader.html | grep "dccontinuousnovember2020" | sed 's|(| |g;s|)| |g' | awk 'FNR == 1 {next} {print $6}' | tr -d '.' | head -n1)
+      lver=$(wget -qO- https://helpx.adobe.com/acrobat/release-note/release-notes-acrobat-reader.html | grep "dccontinuousfeb2021" | sed 's|(| |g;s|)| |g' | awk '{print $6}' | tr -d '.' | head -n1)
       sed -i "s|XXX|$lver|g" ../../acrordrdc/install/sommelier/hooks/pre-install
