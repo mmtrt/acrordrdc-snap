@@ -12,6 +12,7 @@ INSTALL_URL_US="https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/XXX
 INSTALL_URL_ES="https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/XXX/AcroRdrDCXXX_es_ES.exe"
 INSTALL_URL_FR="https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/XXX/AcroRdrDCXXX_fr_FR.exe"
 INSTALL_URL_JP="https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/XXX/AcroRdrDCXXX_ja_JP.exe"
+INSTALL_URL_UPD="https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/XXX/AcroRdrDCUpdXXX.msp"
 
 # If we've been given and installer URL derive the filename
 if [ -n "${INSTALL_URL_DE}" ]; then
@@ -32,6 +33,10 @@ fi
 
 if [ -n "${INSTALL_URL_US}" ]; then
   INSTALL_EXE_US=$(basename "${INSTALL_URL_US}")
+fi
+
+if [ -n "${INSTALL_URL_UPD}" ]; then
+  INSTALL_EXE_UPD=$(basename "${INSTALL_URL_UPD}")
 fi
 
 function install_de() {
