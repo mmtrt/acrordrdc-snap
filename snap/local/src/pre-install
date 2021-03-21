@@ -12,6 +12,11 @@ INSTALL_URL_US="https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/XXX
 INSTALL_URL_ES="https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/XXX/AcroRdrDCXXX_es_ES.exe"
 INSTALL_URL_FR="https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/XXX/AcroRdrDCXXX_fr_FR.exe"
 INSTALL_URL_JP="https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/XXX/AcroRdrDCXXX_ja_JP.exe"
+INSTALL_URL_C_DE="https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/YYY/AcroRdrDCYYY_de_DE.exe"
+INSTALL_URL_C_US="https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/YYY/AcroRdrDCYYY_en_US.exe"
+INSTALL_URL_C_ES="https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/YYY/AcroRdrDCYYY_es_ES.exe"
+INSTALL_URL_C_FR="https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/YYY/AcroRdrDCYYY_fr_FR.exe"
+INSTALL_URL_C_JP="https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/YYY/AcroRdrDCYYY_ja_JP.exe"
 INSTALL_URL_UPD="https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/XXX/AcroRdrDCUpdXXX.msp"
 
 # If we've been given and installer URL derive the filename
