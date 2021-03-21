@@ -58,6 +58,7 @@ function install() {
     sed -i "s|$(echo $INSTALL_URL_C_US | sed -r 's|/| |g' | awk '{print $8}')|$(echo $INSTALL_URL_UPD | sed -r 's|/| |g' | awk '{print $8}')|" "${TMPDIR}/temp/setup.ini"
     wine "${TMPDIR}/temp/setup.exe" /sAll
     sleep 5
+    rm -rf "${TMPDIR}/temp" 2>/dev/null
     else
     # Downloads a file with progress using wget and yad
     wget "${INSTALL_URL_C}" -O "${TMPDIR}/${INSTALL_EXE_C}" 2>&1 | \
