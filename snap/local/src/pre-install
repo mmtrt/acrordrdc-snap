@@ -5,7 +5,7 @@ progHome="$WINEPREFIX/drive_c/Program Files/Adobe/Acrobat Reader DC/Reader"
 progBin="AcroRd32.exe"
 progSetup="$WINEPREFIX/drive_c/Program Files/Adobe/Acrobat Reader DC/Setup Files/{AC76BA86-7AD7-1033-7B44-AC0F074E4100}"
 
-$WINETRICKS --unattended mspatcha riched20
+$WINETRICKS --unattended mspatcha riched20 win7
 
 INSTALL_URL_DE="https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/XXX/AcroRdrDCXXX_de_DE.exe"
 INSTALL_URL_US="https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/XXX/AcroRdrDCXXX_en_US.exe"
