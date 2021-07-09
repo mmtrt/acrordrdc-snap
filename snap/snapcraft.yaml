@@ -81,9 +81,9 @@ parts:
     after: [sommelier]
     plugin: nil
     override-build: |
-      lver=$(wget -qO- https://helpx.adobe.com/acrobat/release-note/release-notes-acrobat-reader.html | grep "dccontinuousfeb2021qfe" | sed 's|(| |g;s|)| |g' | awk 'FNR == 10 {next} {print $6}' | tr -d '.' | head -n1)
+      lver=$(curl -vs https://helpx.adobe.com/acrobat/release-note/release-notes-acrobat-reader.html &>/dev/stdout | grep "continuous" | cut -d'"' -f5 | sed -n 2p | sed 's|(| |g;s|)| |g' | awk 'FNR == 10 {next} {print $4}' | tr -d '.')
       # Continuous installer 
-      cver=$(curl -vs https://helpx.adobe.com/acrobat/release-note/release-notes-acrobat-reader.html &>/dev/stdout | grep "continuous" | cut -d'"' -f5 | sed -n 2p | sed 's|(| |g;s|)| |g' | awk 'FNR == 10 {next} {print $4}' | tr -d '.')
+      cver=$(curl -vs https://helpx.adobe.com/acrobat/release-note/release-notes-acrobat-reader.html &>/dev/stdout | grep "dccontinuousmay2021" | sed 's|(| |g;s|)| |g' | awk 'FNR == 10 {next} {print $6}' | tr -d '.')
       # Patch pre-install file
       sed -i "s|XXX|$lver|g" ../../acrordrdc/install/sommelier/hooks/pre-install
       sed -i "s|YYY|$cver|g" ../../acrordrdc/install/sommelier/hooks/pre-install
