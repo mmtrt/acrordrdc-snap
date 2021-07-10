@@ -62,7 +62,7 @@ parts:
     override-build: |
       snapcraftctl build
       set -ex
-      ver=$(curl -vs https://helpx.adobe.com/acrobat/release-note/release-notes-acrobat-reader.html 2&>1 | grep "continuous" | cut -d'"' -f5 | sed -n 2p | sed 's|(| |g;s|)| |g' | awk 'FNR == 10 {next} {print $4}')
+      ver=$(curl 2>/dev/null -vs https://helpx.adobe.com/acrobat/release-note/release-notes-acrobat-reader.html | grep "continuous" | cut -d'"' -f5 | sed -n 2p | sed 's|(| |g;s|)| |g' | awk 'FNR == 10 {next} {print $4}')
       snapcraftctl set-version "20$ver"
       mkdir -p sommelier/hooks ; mv pre-install sommelier/hooks ; cp -R -p sommelier $SNAPCRAFT_PART_INSTALL
     stage:
@@ -81,9 +81,9 @@ parts:
     after: [sommelier]
     plugin: nil
     override-build: |
-      lver=$(curl -vs https://helpx.adobe.com/acrobat/release-note/release-notes-acrobat-reader.html 2&>1 | grep "continuous" | cut -d'"' -f5 | sed -n 2p | sed 's|(| |g;s|)| |g' | awk 'FNR == 10 {next} {print $4}' | tr -d '.')
+      lver=$(curl 2>/dev/null -vs https://helpx.adobe.com/acrobat/release-note/release-notes-acrobat-reader.html | grep "continuous" | cut -d'"' -f5 | sed -n 2p | sed 's|(| |g;s|)| |g' | awk 'FNR == 10 {next} {print $4}' | tr -d '.')
       # Continuous installer 
-      cver=$(curl -vs https://helpx.adobe.com/acrobat/release-note/release-notes-acrobat-reader.html 2&>1 | grep "dccontinuousmay2021" | sed 's|(| |g;s|)| |g' | awk 'FNR == 10 {next} {print $6}' | tr -d '.')
+      cver=$(curl 2>/dev/null -vs https://helpx.adobe.com/acrobat/release-note/release-notes-acrobat-reader.html | grep "dccontinuousmay2021" | sed 's|(| |g;s|)| |g' | awk 'FNR == 10 {next} {print $6}' | tr -d '.')
       # Patch pre-install file
       sed -i "s|XXX|$lver|g" ../../acrordrdc/install/sommelier/hooks/pre-install
       sed -i "s|YYY|$cver|g" ../../acrordrdc/install/sommelier/hooks/pre-install
