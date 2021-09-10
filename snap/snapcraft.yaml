@@ -29,6 +29,10 @@ plugs:
 environment:
   WINEARCH: "win32"
   WINEDLLOVERRIDES: "mscoree,mshtml="   # Prevent pop-ups about Wine Mono and Wine Gecko
+  
+layout:
+  /etc:
+    bind: $SNAP/wine-runtime/etc
 
 apps:
   acrordrdc:
