@@ -30,10 +30,7 @@ environment:
   WINEARCH: "win32"
   WINEDLLOVERRIDES: "mscoree,mshtml="   # Prevent pop-ups about Wine Mono and Wine Gecko
   NO_AT_BRIDGE: "1"
-  
-layout:
-  /etc:
-    bind: $SNAP/wine-runtime/etc
+  SYSTEM_WGETRC: $SNAP/wine-runtime/etc/wgetrc
 
 apps:
   acrordrdc:
