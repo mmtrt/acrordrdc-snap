@@ -29,6 +29,7 @@ plugs:
 environment:
   WINEARCH: "win32"
   WINEDLLOVERRIDES: "mscoree,mshtml="   # Prevent pop-ups about Wine Mono and Wine Gecko
+  NO_AT_BRIDGE: "1"
   
 layout:
   /etc:
