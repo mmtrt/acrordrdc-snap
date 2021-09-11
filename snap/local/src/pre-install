@@ -60,8 +60,7 @@ function install_us() {
       --width=400 \
       --button="Install:0" --button="Exit:1" \
       --text "Download installer:" \
-      --entry-text \
-      "MUI")
+      --entry "MUI")
   ret=$?
 
   [[ $ret -eq 1 ]] && exit 0
