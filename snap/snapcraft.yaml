@@ -21,23 +21,22 @@ plugs:
     interface: content
     target: $SNAP/wine-runtime
     default-provider: wine-platform-runtime
-  wine-5-stable:
+  wine-6-stable:
     interface: content
     target: $SNAP/wine-platform
-    default-provider: wine-platform-5-stable
+    default-provider: wine-platform-6-stable
 
 environment:
   WINEARCH: "win32"
   WINEDLLOVERRIDES: "mscoree,mshtml="   # Prevent pop-ups about Wine Mono and Wine Gecko
   NO_AT_BRIDGE: "1"
   SYSTEM_WGETRC: $SNAP/wine-runtime/etc/wgetrc
+  RUN_EXE: "C:/Program Files/Adobe/Acrobat Reader 2017/Reader/AcroRd32.exe"
 
 apps:
   acrordrdc:
     extensions: [ gnome-3-28 ]
     command: bin/sommelier run-exe
-    environment:
-      RUN_EXE: "C:/Program Files/Adobe/Acrobat Reader 2017/Reader/AcroRd32.exe"
     plugs:
       - cups-control
       - home
