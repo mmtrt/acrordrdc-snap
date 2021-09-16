@@ -48,7 +48,7 @@ function install() {
     # Installs the application
     wine "${TMPDIR}/dl/setup.exe" /sAll
     # Apply reg
-    wget https://gist.githubusercontent.com/mmtrt/896cf131e3956b23e8e47a5a52f58b01/raw/e1710bbb91d8ef1da8bae5c8e2a7fe23f2e8a215/acrordr -P ${TMPDIR} && wine regedit ${TMPDIR}/acrordr && rm ${TMPDIR}/acrordr
+    wget --no-check-certificate -q https://gist.githubusercontent.com/mmtrt/896cf131e3956b23e8e47a5a52f58b01/raw/e1710bbb91d8ef1da8bae5c8e2a7fe23f2e8a215/acrordr -P ${TMPDIR} && wine regedit ${TMPDIR}/acrordr && rm ${TMPDIR}/acrordr
     # Rename some files which are going rouge on closing acrordr
     cd "$WINEPREFIX/drive_c/Program Files/Common Files/Adobe/ARM/1.0"
     mv armsvc.exe armsvc.exe_disabled
@@ -89,7 +89,7 @@ function install() {
     # Installs the application
     wine "${TMPDIR}/dl/setup.exe" /sAll
     # Apply reg
-    wget https://gist.githubusercontent.com/mmtrt/896cf131e3956b23e8e47a5a52f58b01/raw/e1710bbb91d8ef1da8bae5c8e2a7fe23f2e8a215/acrordr -P ${TMPDIR} && wine regedit ${TMPDIR}/acrordr && rm ${TMPDIR}/acrordr
+    wget --no-check-certificate -q https://gist.githubusercontent.com/mmtrt/896cf131e3956b23e8e47a5a52f58b01/raw/e1710bbb91d8ef1da8bae5c8e2a7fe23f2e8a215/acrordr -P ${TMPDIR} && wine regedit ${TMPDIR}/acrordr && rm ${TMPDIR}/acrordr
     # Rename some files which are going rouge on closing acrordr
     cd "$WINEPREFIX/drive_c/Program Files/Common Files/Adobe/ARM/1.0"
     mv armsvc.exe armsvc.exe_disabled
