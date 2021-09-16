@@ -11,6 +11,7 @@ distributions.</p>
 
     snap install acrordrdc
     snap connect acrordrdc:removable-media
+    snap connect acrordrdc:cups-control
 
 ([Don't have snapd installed?](https://snapcraft.io/docs/core/install))
 
