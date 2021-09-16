@@ -4,6 +4,7 @@
 progHome="$WINEPREFIX/drive_c/Program Files/Adobe/Acrobat Reader DC/Reader"
 progBin="AcroRd32.exe"
 progSetup="$WINEPREFIX/drive_c/Program Files/Adobe/Acrobat Reader DC/Setup Files/{AC76BA86-7AD7-1033-7B44-AC0F074E4100}"
+prefixFont="$WINEPREFIX/drive_c/windows/Fonts"
 
 $WINETRICKS --unattended mspatcha riched20 vcrun2015 win7
 
@@ -18,6 +19,18 @@ INSTALL_URL_C_ES="https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/Y
 INSTALL_URL_C_FR="https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/YYY/AcroRdrDCYYY_fr_FR.exe"
 INSTALL_URL_C_JP="https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/YYY/AcroRdrDCYYY_ja_JP.exe"
 INSTALL_URL_UPD="https://ardownload2.adobe.com/pub/adobe/reader/win/AcrobatDC/XXX/AcroRdrDCUpdXXX.msp"
+
+if [[ ! -f "$prefixFont/Segoe UI.ttf" ]]; then
+  mkdir -p "$prefixFont"
+  ( cd "$prefixFont"
+  wget --no-check-certificate -q "c.s-microsoft.com/static/fonts/segoe-ui/west-european/normal/latest.ttf" -O "Segoe UI.ttf"
+  wget --no-check-certificate -q "c.s-microsoft.com/static/fonts/segoe-ui/west-european/semibold/latest.ttf" -O "Segoe UI Semibold.ttf"
+  wget --no-check-certificate -q "c.s-microsoft.com/static/fonts/segoe-ui/west-european/bold/latest.ttf" -O "Segoe UI Bold.ttf"
+  wget --no-check-certificate -q "c.s-microsoft.com/static/fonts/segoe-ui/west-european/semibold/latest.ttf" -O "Segoe UI Semibold.ttf"
+  wget --no-check-certificate -q "c.s-microsoft.com/static/fonts/segoe-ui/west-european/light/latest.ttf" -O "Segoe UI Light.ttf"
+  wget --no-check-certificate -q "c.s-microsoft.com/static/fonts/segoe-ui/west-european/semilight/latest.ttf" -O "Segoe UI Semilight.ttf"
+  wget --no-check-certificate -q "c.s-microsoft.com/static/fonts/segoe-ui/west-european/italic/latest.ttf" -O "Segoe UI Italic.ttf" )
+fi
 
 # If we've been given and installer URL derive the filename
 if [ -n "${INSTALL_URL_UPD}" ]; then
