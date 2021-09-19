@@ -38,6 +38,7 @@ apps:
     extensions: [ gnome-3-28 ]
     command: bin/sommelier run-exe
     plugs:
+      - cups
       - cups-control
       - home
       - network
