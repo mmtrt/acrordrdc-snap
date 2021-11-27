@@ -30,6 +30,7 @@ environment:
   WINEARCH: "win32"
   WINEDLLOVERRIDES: "mscoree,mshtml="   # Prevent pop-ups about Wine Mono and Wine Gecko
   NO_AT_BRIDGE: "1"
+  DISABLE_WAYLAND: "1" # Fix gtk decoration under wayland session
   SYSTEM_WGETRC: $SNAP/wine-runtime/etc/wgetrc
   RUN_EXE: "C:/Program Files/Adobe/Acrobat Reader DC/Reader/AcroRd32.exe"
 
