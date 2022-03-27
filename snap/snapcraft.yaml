@@ -24,7 +24,7 @@ plugs:
   wine-6-stable:
     interface: content
     target: $SNAP/wine-platform
-    default-provider: wine-platform-6-stable
+    default-provider: wine-platform-7-stable-core20
 
 environment:
   WINEARCH: "win32"
