@@ -17,7 +17,7 @@ architectures:
 base: core18
 
 plugs:
-  wine-runtime-c20:
+  wine-runtime:
     interface: content
     target: $SNAP/wine-runtime
     default-provider: wine-platform-runtime-core20
