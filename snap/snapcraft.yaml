@@ -20,7 +20,7 @@ plugs:
   wine-runtime:
     interface: content
     target: $SNAP/wine-runtime
-    default-provider: wine-platform-runtime
+    default-provider: wine-platform-runtime-core20
   wine-7-stable:
     interface: content
     target: $SNAP/wine-platform
