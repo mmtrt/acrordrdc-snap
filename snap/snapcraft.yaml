@@ -36,7 +36,7 @@ environment:
 
 apps:
   acrordrdc:
-    extensions: [ gnome-3-38 ]
+    extensions: [ gnome-3-28 ]
     command: bin/sommelier run-exe
     plugs:
       - cups-control
@@ -46,13 +46,13 @@ apps:
       - opengl
 
   wine:
-    extensions: [ gnome-3-38 ]
+    extensions: [ gnome-3-28 ]
     command: bin/sommelier
     plugs:
       - home
       - network
   winetricks:
-    extensions: [ gnome-3-38 ]
+    extensions: [ gnome-3-28 ]
     command: bin/sommelier winetricks
     plugs:
       - network
