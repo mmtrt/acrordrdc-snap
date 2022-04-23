@@ -89,3 +89,10 @@ parts:
       # Patch pre-install file
       sed -i "s|XXX|$lver|g" ../../acrordrdc/install/sommelier/hooks/pre-install
       sed -i "s|YYY|$cver|g" ../../acrordrdc/install/sommelier/hooks/pre-install
+
+  # This reverts changes from https://github.com/snapcore/snapcraft/pull/3586
+  fix-fontconfig:
+    plugin: nil
+    after: [gnome-3-28-extension]
+    override-prime: |
+      sed -i '/snap-package/,+1d' $SNAPCRAFT_PRIME/snap/command-chain/desktop-launch
