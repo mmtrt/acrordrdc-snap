@@ -87,3 +87,10 @@ parts:
       qver=$(curl 2>/dev/null -vs $(curl 2>/dev/null -vs https://helpx.adobe.com/acrobat/release-note/release-notes-acrobat-reader.html | grep 'dc17.*[0-9]' | awk '{print $3}' | cut -d'"' -f2 | head -n1) | grep "<title>" | sed 's|  <title>||' | cut -d'(' -f1 | tr -d '.' | sed 's/ *$//')
       # Patch pre-install file
       sed -i "s|YYY|$qver|g" ../../acrordrdc/install/sommelier/hooks/pre-install
+
+  # This reverts changes from https://github.com/snapcore/snapcraft/pull/3586
+  fix-fontconfig:
+    plugin: nil
+    after: [gnome-3-28-extension]
+    override-prime: |
+      sed -i '/snap-package/,+1d' $SNAPCRAFT_PRIME/snap/command-chain/desktop-launch
