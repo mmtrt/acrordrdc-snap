@@ -77,7 +77,7 @@ parts:
   sommelier:
     plugin: make
     source: https://github.com/mmtrt/sommelier-core.git
-    source-branch: "tmp"
+    source-branch: "tmp-core20"
 
   fixup-url:
     after: [sommelier]
