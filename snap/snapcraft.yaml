@@ -64,7 +64,7 @@ parts:
     override-build: |
       snapcraftctl build
       set -ex
-      ver=$(curl 2>/dev/null -vs $(curl 2>/dev/null -vs https://helpx.adobe.com/acrobat/release-note/release-notes-acrobat-reader.html | grep 'dc17.*[0-9]' | awk '{print $3}' | cut -d'"' -f2 | head -n1) | grep "<title>" | sed 's|  <title>||' | cut -d'(' -f1 | sed 's/ *$//') | awk '{print $1}'
+      ver=$(curl 2>/dev/null -vs $(curl 2>/dev/null -vs https://helpx.adobe.com/acrobat/release-note/release-notes-acrobat-reader.html | grep 'dc17.*[0-9]' | awk '{print $3}' | cut -d'"' -f2 | head -n1) | grep "<title>" | sed 's|  <title>||' | cut -d'(' -f1 | sed 's/ *$//' | awk '{print $1}'
       snapcraftctl set-version "20$ver"
       mkdir -p sommelier/hooks ; mv pre-install sommelier/hooks ; cp -R -p sommelier $SNAPCRAFT_PART_INSTALL
     stage:
@@ -84,7 +84,7 @@ parts:
     plugin: nil
     override-build: |
       # Quarterly update
-      qver=$(curl 2>/dev/null -vs $(curl 2>/dev/null -vs https://helpx.adobe.com/acrobat/release-note/release-notes-acrobat-reader.html | grep 'dc17.*[0-9]' | awk '{print $3}' | cut -d'"' -f2 | head -n1) | grep "<title>" | sed 's|  <title>||' | cut -d'(' -f1 | tr -d '.' | sed 's/ *$//' | awk '{print $1}')
+      qver=$(curl 2>/dev/null -vs $(curl 2>/dev/null -vs https://helpx.adobe.com/acrobat/release-note/release-notes-acrobat-reader.html | grep 'dc17.*[0-9]' | awk '{print $3}' | cut -d'"' -f2 | head -n1) | grep "<title>" | sed 's|  <title>||' | cut -d'(' -f1 | tr -d '.' | sed 's/ *$//' | awk '{print $1}'
       # Patch pre-install file
       sed -i "s|YYY|$qver|g" ../../acrordrdc/install/sommelier/hooks/pre-install
 
