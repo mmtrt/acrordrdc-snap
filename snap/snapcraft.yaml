@@ -22,10 +22,10 @@ plugs:
     interface: content
     target: $SNAP/wine-runtime
     default-provider: wine-platform-runtime-core20
-  wine-7-stable:
+  wine-7-staging:
     interface: content
     target: $SNAP/wine-platform
-    default-provider: wine-platform-7-stable-core20
+    default-provider: wine-platform-7-staging-core20
 
 environment:
   WINEARCH: "win32"
