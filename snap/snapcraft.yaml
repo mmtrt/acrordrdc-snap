@@ -14,18 +14,18 @@ confinement: strict
 architectures:
   - build-on: amd64
     run-on: [amd64]
-base: core18
+base: core20
 compression: lzo
 
 plugs:
-  wine-runtime:
+  wine-runtime-c20:
     interface: content
     target: $SNAP/wine-runtime
-    default-provider: wine-platform-runtime
-  wine-5-stable:
+    default-provider: wine-platform-runtime-core20
+  wine-7-staging:
     interface: content
     target: $SNAP/wine-platform
-    default-provider: wine-platform-5-stable
+    default-provider: wine-platform-7-staging-core20
 
 environment:
   WINEARCH: "win32"
@@ -37,7 +37,7 @@ environment:
 
 apps:
   acrordrdc:
-    extensions: [ gnome-3-28 ]
+    extensions: [ gnome-3-38 ]
     command: bin/sommelier run-exe
     plugs:
       - cups-control
@@ -46,13 +46,13 @@ apps:
       - removable-media
 
   wine:
-    extensions: [ gnome-3-28 ]
+    extensions: [ gnome-3-38 ]
     command: bin/sommelier
     plugs:
       - home
       - network
   winetricks:
-    extensions: [ gnome-3-28 ]
+    extensions: [ gnome-3-38 ]
     command: bin/sommelier winetricks
     plugs:
       - network
@@ -77,7 +77,7 @@ parts:
   sommelier:
     plugin: make
     source: https://github.com/mmtrt/sommelier-core.git
-    source-branch: "tmp"
+    source-branch: "tmp-core20"
 
   fixup-url:
     after: [sommelier]
@@ -91,15 +91,15 @@ parts:
       sed -i "s|YYY|$cver|g" ../../acrordrdc/install/sommelier/hooks/pre-install
 
   # This reverts changes from https://github.com/snapcore/snapcraft/pull/3586
-  # fix-fontconfig:
-  #   plugin: nil
-  #   after: [gnome-3-38-extension]
-  #   override-prime: |
-  #     sed -i '/snap-package/,+1d' $SNAPCRAFT_PRIME/snap/command-chain/desktop-launch
-  # 
-  # fix-bindtext:
-  #   plugin: nil
-  #   after: [gnome-3-38-extension]
-  #   override-prime: |
-  #     sed -i "$(grep -in bindtext $SNAPCRAFT_PRIME/snap/command-chain/desktop-launch | cut -d':' -f1 | tail -2 | head -1)d" $SNAPCRAFT_PRIME/snap/command-chain/desktop-launch
-  #     sed -i "$(grep -in bindtext $SNAPCRAFT_PRIME/snap/command-chain/desktop-launch | cut -d':' -f1 | tail -1)d" $SNAPCRAFT_PRIME/snap/command-chain/desktop-launch
+  fix-fontconfig:
+    plugin: nil
+    after: [gnome-3-38-extension]
+    override-prime: |
+      sed -i '/snap-package/,+1d' $SNAPCRAFT_PRIME/snap/command-chain/desktop-launch
+
+  fix-bindtext:
+    plugin: nil
+    after: [gnome-3-38-extension]
+    override-prime: |
+      sed -i "$(grep -in bindtext $SNAPCRAFT_PRIME/snap/command-chain/desktop-launch | cut -d':' -f1 | tail -2 | head -1)d" $SNAPCRAFT_PRIME/snap/command-chain/desktop-launch
+      sed -i "$(grep -in bindtext $SNAPCRAFT_PRIME/snap/command-chain/desktop-launch | cut -d':' -f1 | tail -1)d" $SNAPCRAFT_PRIME/snap/command-chain/desktop-launch
