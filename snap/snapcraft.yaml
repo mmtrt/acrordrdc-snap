@@ -14,18 +14,18 @@ confinement: strict
 architectures:
   - build-on: amd64
     run-on: [amd64]
-base: core20
+base: core18
 compression: lzo
 
 plugs:
-  wine-runtime-c20:
+  wine-runtime:
     interface: content
     target: $SNAP/wine-runtime
-    default-provider: wine-platform-runtime-core20
-  wine-7-stable:
+    default-provider: wine-platform-runtime
+  wine-5-stable:
     interface: content
     target: $SNAP/wine-platform
-    default-provider: wine-platform-7-stable-core20
+    default-provider: wine-platform-5-stable
 
 environment:
   WINEARCH: "win32"
@@ -37,7 +37,7 @@ environment:
 
 apps:
   acrordrdc:
-    extensions: [ gnome-3-38 ]
+    extensions: [ gnome-3-28 ]
     command: bin/sommelier run-exe
     plugs:
       - cups-control
@@ -46,13 +46,13 @@ apps:
       - removable-media
 
   wine:
-    extensions: [ gnome-3-38 ]
+    extensions: [ gnome-3-28 ]
     command: bin/sommelier
     plugs:
       - home
       - network
   winetricks:
-    extensions: [ gnome-3-38 ]
+    extensions: [ gnome-3-28 ]
     command: bin/sommelier winetricks
     plugs:
       - network
