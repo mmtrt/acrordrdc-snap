@@ -101,7 +101,6 @@ function install_us() {
   action=$(yad --width 550 --form --title "Adobe Acrobat Reader DC" \
       --center \
       --width=550 \
-      --height=100 \
       --button="Ok:0" \
       --text "\n<big><b>Attention!</b></big>\n\nDue to the nature of the installation process, we strongly advise you to close the application window after you have accepted the License Agreement!\n")
 
