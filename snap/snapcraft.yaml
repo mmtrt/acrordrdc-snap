@@ -11,24 +11,27 @@ adopt-info: acrordrdc
 
 grade: stable
 confinement: strict
-architectures:
-  - build-on: amd64
-    run-on: [amd64]
-base: core20
+base: core24
+platforms:
+  amd64:
 compression: lzo
+assumes:
+  - snapd2.62
 
 plugs:
-  wine-runtime-c20:
+  shmem:
+    interface: shared-memory
+    private: true
+  wine-runtime-c24:
     interface: content
     target: $SNAP/wine-runtime
-    default-provider: wine-platform-runtime-core20
-  wine-7-stable:
+    default-provider: wine-platform-runtime-core24
+  wine-base-staging:
     interface: content
     target: $SNAP/wine-platform
-    default-provider: wine-platform-7-stable-core20
+    default-provider: wine-platform
 
 environment:
-  WINEARCH: "win32"
   WINEDLLOVERRIDES: "mscoree,mshtml="   # Prevent pop-ups about Wine Mono and Wine Gecko
   NO_AT_BRIDGE: "1"
   DISABLE_WAYLAND: "1" # Fix gtk decoration under wayland session
@@ -37,7 +40,7 @@ environment:
 
 apps:
   acrordrdc:
-    extensions: [ gnome-3-38 ]
+    extensions: [gnome]
     command: bin/sommelier run-exe
     plugs:
       - cups-control
@@ -46,13 +49,13 @@ apps:
       - removable-media
 
   wine:
-    extensions: [ gnome-3-38 ]
+    extensions: [gnome]
     command: bin/sommelier
     plugs:
       - home
       - network
   winetricks:
-    extensions: [ gnome-3-38 ]
+    extensions: [gnome]
     command: bin/sommelier winetricks
     plugs:
       - network
@@ -62,10 +65,10 @@ parts:
     plugin: nil
     source: ./snap/local/src
     override-build: |
-      snapcraftctl build
+      craftctl default
       set -ex
-      snapcraftctl set-version "2017.012.30262"
-      mkdir -p sommelier/hooks ; mv pre-install sommelier/hooks ; cp -R -p sommelier $SNAPCRAFT_PART_INSTALL
+      craftctl set version="2017.012.30262"
+      mkdir -p sommelier/hooks ; mv pre-install sommelier/hooks ; cp -R -p sommelier $CRAFT_PART_INSTALL
     stage:
       - sommelier
     build-packages:
@@ -76,18 +79,4 @@ parts:
   sommelier:
     plugin: make
     source: https://github.com/mmtrt/sommelier-core.git
-    source-branch: "tmp-core20"
-
-  # This reverts changes from https://github.com/snapcore/snapcraft/pull/3586
-  fix-fontconfig:
-    plugin: nil
-    after: [gnome-3-38-extension]
-    override-prime: |
-      sed -i '/snap-package/,+1d' $SNAPCRAFT_PRIME/snap/command-chain/desktop-launch
-
-  fix-bindtext:
-    plugin: nil
-    after: [gnome-3-38-extension]
-    override-prime: |
-      sed -i "$(grep -in bindtext $SNAPCRAFT_PRIME/snap/command-chain/desktop-launch | cut -d':' -f1 | tail -2 | head -1)d" $SNAPCRAFT_PRIME/snap/command-chain/desktop-launch
-      sed -i "$(grep -in bindtext $SNAPCRAFT_PRIME/snap/command-chain/desktop-launch | cut -d':' -f1 | tail -1)d" $SNAPCRAFT_PRIME/snap/command-chain/desktop-launch
+    source-branch: "core24"
