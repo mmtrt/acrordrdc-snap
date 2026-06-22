@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # acrordrdc env
-progHome="$WINEPREFIX/drive_c/Program Files/Adobe/Acrobat Reader 2017/Reader"
+progHome="$WINEPREFIX/drive_c/Program Files (x86)/Adobe/Acrobat Reader 2017/Reader"
 progBin="AcroRd32.exe"
-progSetup="$WINEPREFIX/drive_c/Program Files/Adobe/Acrobat Reader 2017/Setup Files/{AC76BA86-7AD7-FFFF-7B44-AE1108756300}/"
+progSetup="$WINEPREFIX/drive_c/Program Files (x86)/Adobe/Acrobat Reader 2017/Setup Files/{AC76BA86-7AD7-FFFF-7B44-AE1108756300}/"
 prefixFont="$WINEPREFIX/drive_c/windows/Fonts"
 
 $WINETRICKS --unattended mspatcha riched20 win7

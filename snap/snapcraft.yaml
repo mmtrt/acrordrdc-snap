@@ -36,7 +36,7 @@ environment:
   NO_AT_BRIDGE: "1"
   DISABLE_WAYLAND: "1" # Fix gtk decoration under wayland session
   SYSTEM_WGETRC: $SNAP/wine-runtime/etc/wgetrc
-  RUN_EXE: "C:/Program Files/Adobe/Acrobat Reader 2017/Reader/AcroRd32.exe"
+  RUN_EXE: "C:/Program Files (x86)/Adobe/Acrobat Reader 2017/Reader/AcroRd32.exe"
 
 apps:
   acrordrdc:
