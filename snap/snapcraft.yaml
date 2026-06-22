@@ -64,8 +64,7 @@ parts:
     override-build: |
       snapcraftctl build
       set -ex
-      ver=$(curl 2>/dev/null -vs $(curl 2>/dev/null -vs https://helpx.adobe.com/acrobat/release-note/release-notes-acrobat-reader.html | grep 'dc17.*[0-9]' | awk '{print $3}' | cut -d'"' -f2 | head -n1) | grep "<title>" | sed 's|  <title>||' | cut -d'(' -f1 | sed 's/ *$//' | awk '{print $1}')
-      snapcraftctl set-version "20$ver"
+      snapcraftctl set-version "2017.012.30262"
       mkdir -p sommelier/hooks ; mv pre-install sommelier/hooks ; cp -R -p sommelier $SNAPCRAFT_PART_INSTALL
     stage:
       - sommelier
@@ -78,15 +77,6 @@ parts:
     plugin: make
     source: https://github.com/mmtrt/sommelier-core.git
     source-branch: "tmp-core20"
-
-  fixup-url:
-    after: [sommelier]
-    plugin: nil
-    override-build: |
-      # Quarterly update
-      qver=$(curl 2>/dev/null -vs $(curl 2>/dev/null -vs https://helpx.adobe.com/acrobat/release-note/release-notes-acrobat-reader.html | grep 'dc17.*[0-9]' | awk '{print $3}' | cut -d'"' -f2 | head -n1) | grep "<title>" | sed 's|  <title>||' | cut -d'(' -f1 | tr -d '.' | sed 's/ *$//' | awk '{print $1}')
-      # Patch pre-install file
-      sed -i "s|YYY|$qver|g" ../../acrordrdc/install/sommelier/hooks/pre-install
 
   # This reverts changes from https://github.com/snapcore/snapcraft/pull/3586
   fix-fontconfig:
