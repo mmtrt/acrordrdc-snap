@@ -33,6 +33,7 @@ plugs:
 
 environment:
   WINEDLLOVERRIDES: "mscoree,mshtml="   # Prevent pop-ups about Wine Mono and Wine Gecko
+  TRICKS: "mspatcha riched20 win7"
   NO_AT_BRIDGE: "1"
   DISABLE_WAYLAND: "1" # Fix gtk decoration under wayland session
   SYSTEM_WGETRC: $SNAP/wine-runtime/etc/wgetrc

@@ -6,9 +6,6 @@ progBin="AcroRd32.exe"
 progSetup="$WINEPREFIX/drive_c/Program Files (x86)/Adobe/Acrobat Reader 2017/Setup Files/{AC76BA86-7AD7-FFFF-7B44-AE1108756300}/"
 prefixFont="$WINEPREFIX/drive_c/windows/Fonts"
 
-$WINETRICKS --unattended mspatcha riched20 win7
-
-
 INSTALL_URL_US="https://ardownload2.adobe.com/pub/adobe/reader/win/Acrobat2017/1700830051/AcroRdr20171700830051_MUI.exe"
 INSTALL_URL_UPD="https://ardownload2.adobe.com/pub/adobe/reader/win/Acrobat2017/1701230262/AcroRdr2017Upd1701230262_MUI.msp"
 
